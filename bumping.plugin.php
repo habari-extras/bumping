@@ -24,7 +24,7 @@ class Bumping extends Plugin
 
 	function action_admin_moderate_comments( $action, $comments, $handler )
 	{
-		if ( $action == 'approve' ) {
+		if ( $action == 'approve' || $action == 'approved' ) {
 			foreach ( $comments as $c ) {
 				$this->update_post_modified( $c->post_id );
 				EventLog::log( 'bumped post ' . $c->post_id . ', by admin approval', 'info', 'default', 'bumping' );
